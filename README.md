@@ -1,6 +1,6 @@
 🏥 MedBridge: When There Is No Doctor
 
-**Live Demo:** https://YOURUSERNAME.github.io/medbridge-platform/
+**Live Demo:** https://louisnkan.github.io/medbridge-platform/
 
 Digital medical emergency platform providing instant symptom assessment and emergency care instructions when professional help isn't immediately available.
 
