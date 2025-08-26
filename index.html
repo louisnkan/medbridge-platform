@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedBridge - When There Is No Doctor</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🏥</span>
+                <div class="logo-text">
+                    <h1>MedBridge</h1>
+                    <p class="subtitle">When There Is No Doctor</p>
+                </div>
+            </div>
+            <div class="emergency-contact">
+                <span class="emergency-text">Emergency? Call</span>
+                <span class="emergency-number" id="localEmergencyNumber">911</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Legal Disclaimer Banner -->
+    <section class="disclaimer-banner">
+        <div class="container">
+            <p>⚠️ <strong>MEDICAL DISCLAIMER:</strong> This platform provides educational guidance only. Not a substitute for professional medical diagnosis or treatment. In emergencies, contact local medical services immediately.</p>
+        </div>
+    </section>
+
+    <!-- Main Assessment Tool -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Welcome Section -->
+            <section class="welcome-section" id="welcomeSection">
+                <h2>Get Immediate Medical Guidance</h2>
+                <p class="welcome-text">Quick symptom assessment and emergency care instructions while you seek professional help</p>
+                
+                <div class="quick-actions">
+                    <button class="btn btn-primary" onclick="startAssessment()">Start Symptom Check</button>
+                    <button class="btn btn-secondary" onclick="findNearbyHelp()">Find Nearby Help</button>
+                    <button class="btn btn-emergency" onclick="callEmergency()">🚨 Emergency Call</button>
+                </div>
+            </section>
+
+            <!-- Symptom Assessment -->
+            <section class="assessment-section hidden" id="assessmentSection">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                
+                <div class="step" id="step1">
+                    <h3>What symptoms are you experiencing right now?</h3>
+                    <p class="step-subtitle">Select all that apply:</p>
+                    
+                    <div class="symptom-grid">
+                        <button class="symptom-btn" data-symptom="fever">🌡️ Fever</button>
+                        <button class="symptom-btn" data-symptom="headache">🤕 Headache</button>
+                        <button class="symptom-btn" data-symptom="nausea">🤢 Nausea/Vomiting</button>
+                        <button class="symptom-btn" data-symptom="diarrhea">💧 Diarrhea</button>
+                        <button class="symptom-btn" data-symptom="breathing">🫁 Breathing Issues</button>
+                        <button class="symptom-btn" data-symptom="chest-pain">💔 Chest Pain</button>
+                        <button class="symptom-btn" data-symptom="abdominal">🤰 Abdominal Pain</button>
+                        <button class="symptom-btn" data-symptom="fatigue">😴 Extreme Fatigue</button>
+                        <button class="symptom-btn" data-symptom="rash">🔴 Rash/Skin Issues</button>
+                        <button class="symptom-btn" data-symptom="joint-pain">🦴 Joint Pain</button>
+                    </div>
+                    
+                    <div class="step-actions">
+                        <button class="btn btn-primary" onclick="nextStep()" id="nextBtn" disabled>Continue</button>
+                    </div>
+                </div>
+
+                <div class="step hidden" id="step2">
+                    <h3>How severe are these symptoms?</h3>
+                    <div class="severity-options">
+                        <button class="severity-btn" data-severity="mild">😐 Mild - Manageable discomfort</button>
+                        <button class="severity-btn" data-severity="moderate">😰 Moderate - Significant discomfort</button>
+                        <button class="severity-btn" data-severity="severe">😵 Severe - Intense pain/distress</button>
+                    </div>
+                    
+                    <div class="step-actions">
+                        <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                        <button class="btn btn-primary" onclick="getAssessment()" id="assessBtn" disabled>Get Assessment</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Assessment Results -->
+            <section class="results-section hidden" id="resultsSection">
+                <div class="assessment-result">
+                    <div class="result-header">
+                        <span class="result-icon" id="resultIcon">🏥</span>
+                        <h3 id="resultTitle">Assessment Complete</h3>
+                        <span class="urgency-badge" id="urgencyBadge">MODERATE</span>
+                    </div>
+                    
+                    <div class="result-content">
+                        <div class="possible-conditions">
+                            <h4>Possible Conditions:</h4>
+                            <ul id="conditionsList"></ul>
+                        </div>
+                        
+                        <div class="immediate-actions">
+                            <h4>🚨 Immediate Actions:</h4>
+                            <ol id="actionsList"></ol>
+                        </div>
+                        
+                        <div class="next-steps">
+                            <h4>🔄 Next Steps:</h4>
+                            <div class="next-step-options">
+                                <button class="btn btn-primary" onclick="findTelehealth()">📞 Connect with Doctor</button>
+                                <button class="btn btn-secondary" onclick="findNearbyClinic()">🏥 Find Nearby Clinic</button>
+                                <button class="btn btn-outline" onclick="trackSymptoms()">📊 Track Symptoms</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-actions">
+                    <button class="btn btn-secondary" onclick="startNewAssessment()">New Assessment</button>
+                    <button class="btn btn-outline" onclick="shareResults()">Share Results</button>
+                </div>
+            </section>
+
+            <!-- Healthcare Finder -->
+            <section class="healthcare-finder hidden" id="healthcareFinder">
+                <h3>🏥 Healthcare Options Near You</h3>
+                <div class="location-input">
+                    <input type="text" id="locationInput" placeholder="Enter your location or allow GPS">
+                    <button class="btn btn-primary" onclick="findHealthcareOptions()">Search</button>
+                </div>
+                
+                <div class="healthcare-options" id="healthcareOptions">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>MedBridge</h4>
+                    <p>Bridging healthcare gaps with technology</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#emergency">Emergency Contacts</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#help">Help Center</a></li>
+                        <li><a href="#feedback">Feedback</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MedBridge Platform. For educational purposes only. Not medical advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+                          </html>
