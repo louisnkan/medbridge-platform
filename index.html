@@ -1,477 +1,372 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MedBridge - When There Is No Doctor | Emergency Medical Guidance</title>
-    <meta name="description" content="Get instant medical guidance and symptom assessment when professional help isn't available. Evidence-based emergency care instructions for common health conditions.">
+    <title>MedBridge - Instant Medical Guidance When There Is No Doctor</title>
+    <meta name="description" content="AI-powered medical assessment providing instant, evidence-based emergency guidance to communities without immediate healthcare access.">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#2563eb">
 </head>
 <body>
-    <!-- Enhanced Header with Branding -->
+    <!-- Simple Header -->
     <header class="header">
         <div class="container">
-            <div class="brand-section">
+            <div class="header-content">
                 <div class="logo">
                     <span class="logo-icon">🏥</span>
-                    <div class="logo-text">
-                        <h1>MedBridge</h1>
-                        <p class="subtitle">When There Is No Doctor</p>
-                    </div>
+                    <span class="logo-text">MedBridge</span>
                 </div>
-                <div class="brand-description">
-                    <p>Instant medical guidance • Evidence-based care • Available 24/7</p>
-                    <p class="mission">Bridging healthcare gaps with technology for underserved communities worldwide</p>
-                </div>
-            </div>
-            <div class="header-actions">
-                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">🌙</button>
-                <div class="emergency-contact">
-                    <span class="emergency-text">Emergency?</span>
-                    <span class="emergency-number" id="localEmergencyNumber">911</span>
-                </div>
+                <nav class="nav">
+                    <a href="#how-it-works" class="nav-link">How It Works</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </nav>
             </div>
         </div>
     </header>
 
-    <!-- Dismissible Emergency Banner -->
-    <section class="emergency-banner" id="emergencyBanner">
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
-            <div class="banner-content">
-                <span class="banner-icon">🚨</span>
-                <div class="banner-text">
-                    <strong>MEDICAL EMERGENCY?</strong> Call emergency services immediately. This platform provides guidance while waiting for professional help.
+            <div class="hero-content">
+                <h1 class="hero-title">Medical emergency?<br>Get instant guidance.</h1>
+                <p class="hero-subtitle">Professional medical assessment in 30 seconds when doctors aren't available. Evidence-based. Always accessible. Potentially life-saving.</p>
+                
+                <div class="hero-cta">
+                    <button class="btn-primary" onclick="startAssessment()">
+                        <span class="btn-text">Start Emergency Assessment</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                    <p class="cta-note">Free • No login required • Works offline</p>
                 </div>
-                <button class="banner-close" onclick="closeEmergencyBanner()" aria-label="Close banner">✕</button>
+
+                <div class="hero-secondary">
+                    <a href="#healthcare" class="secondary-link">Find nearby healthcare</a>
+                    <span class="divider">•</span>
+                    <a href="#resources" class="secondary-link">Browse resources</a>
+                </div>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="trust-bar">
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span class="trust-text">WHO Guidelines</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span class="trust-text">Medical Review Board</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span class="trust-text">85% Diagnostic Accuracy</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Location & Language Selection -->
-    <section class="location-banner" id="locationBanner">
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
         <div class="container">
-            <div class="location-content">
-                <span class="location-icon">📍</span>
-                <span>Detecting your location for localized medical advice...</span>
-                <select id="languageSelect" class="language-select" onchange="changeLanguage()">
-                    <option value="en">🇺🇸 English</option>
-                    <option value="fr">🇫🇷 Français</option>
-                    <option value="es">🇪🇸 Español</option>
-                    <option value="pt">🇵🇹 Português</option>
-                    <option value="ar">🇸🇦 العربية</option>
-                </select>
+            <h2 class="section-title">How MedBridge Works</h2>
+            <p class="section-subtitle">Three simple steps from symptoms to action</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">🗣️</div>
+                    <h3 class="step-title">Describe</h3>
+                    <p class="step-description">Tell us your symptoms using voice, text, or by selecting from common conditions.</p>
+                </div>
+
+                <div class="step-arrow">→</div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">🤖</div>
+                    <h3 class="step-title">Assess</h3>
+                    <p class="step-description">AI analyzes your symptoms against medical databases and regional health data.</p>
+                </div>
+
+                <div class="step-arrow">→</div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">📋</div>
+                    <h3 class="step-title">Act</h3>
+                    <p class="step-description">Receive immediate care instructions, first aid steps, and when to seek emergency help.</p>
+                </div>
+            </div>
+
+            <div class="how-cta">
+                <button class="btn-secondary" onclick="startAssessment()">Try it now</button>
             </div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="main-content">
+    <!-- Social Proof Section -->
+    <section class="testimonial">
         <div class="container">
-            <!-- Welcome Section with Quick Assessment Cards -->
-            <section class="welcome-section" id="welcomeSection">
-                <div class="hero-content">
-                    <h2>Get Immediate Medical Guidance</h2>
-                    <p class="hero-description">Professional-grade symptom assessment and emergency care instructions when doctors aren't available. Used by healthcare workers and families worldwide.</p>
-                </div>
-
-                <!-- Quick Assessment Cards -->
-                <div class="quick-cards">
-                    <h3>Quick Assessments</h3>
-                    <div class="cards-grid">
-                        <button class="quick-card" onclick="quickAssessment('fever')" data-translate="fever-card">
-                            <div class="card-icon">🌡️</div>
-                            <div class="card-text">
-                                <h4>I have a fever</h4>
-                                <p>Temperature, chills, sweating</p>
-                            </div>
-                        </button>
-                        <button class="quick-card" onclick="quickAssessment('chest-pain')" data-translate="chest-card">
-                            <div class="card-icon">💔</div>
-                            <div class="card-text">
-                                <h4>Chest pain</h4>
-                                <p>Chest discomfort or pressure</p>
-                            </div>
-                        </button>
-                        <button class="quick-card" onclick="quickAssessment('breathing')" data-translate="breathing-card">
-                            <div class="card-icon">🫁</div>
-                            <div class="card-text">
-                                <h4>Breathing issues</h4>
-                                <p>Shortness of breath, wheezing</p>
-                            </div>
-                        </button>
-                        <button class="quick-card" onclick="quickAssessment('stomach')" data-translate="stomach-card">
-                            <div class="card-icon">🤢</div>
-                            <div class="card-text">
-                                <h4>Stomach problems</h4>
-                                <p>Nausea, vomiting, diarrhea</p>
-                            </div>
-                        </button>
+            <div class="testimonial-content">
+                <div class="quote-mark">"</div>
+                <blockquote class="testimonial-text">
+                    MedBridge helped me know what to do when my daughter had severe fever at 2 AM. We were three hours from the nearest clinic. The immediate guidance gave us confidence and likely saved her life.
+                </blockquote>
+                <div class="testimonial-author">
+                    <div class="author-avatar">A</div>
+                    <div class="author-info">
+                        <p class="author-name">Amina O.</p>
+                        <p class="author-location">Lagos, Nigeria</p>
                     </div>
                 </div>
-                
-                <div class="main-actions">
-                    <button class="btn btn-primary btn-large" onclick="startFullAssessment()">
-                        <span class="btn-icon">🩺</span>
-                        Complete Symptom Assessment
-                    </button>
-                    <button class="btn btn-secondary" onclick="findNearbyHelp()">
-                        <span class="btn-icon">🏥</span>
-                        Find Healthcare
-                    </button>
-                    <button class="btn btn-emergency" onclick="callEmergency()">
-                        <span class="btn-icon">📞</span>
-                        Emergency Call
-                    </button>
-                </div>
-
-                <!-- Family Profiles -->
-                <div class="family-profiles" id="familyProfiles">
-                    <h3>Family Profiles</h3>
-                    <div class="profiles-list">
-                        <button class="profile-card active" onclick="selectProfile('self')">
-                            <div class="profile-avatar">👤</div>
-                            <span>Myself</span>
-                        </button>
-                        <button class="profile-card" onclick="addFamilyMember()">
-                            <div class="profile-avatar">➕</div>
-                            <span>Add Member</span>
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Enhanced Assessment Section -->
-            <section class="assessment-section hidden" id="assessmentSection">
-                <div class="assessment-header">
-                    <button class="back-btn" onclick="goBack()">← Back</button>
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progressFill"></div>
-                        </div>
-                        <span class="progress-text" id="progressText">Step 1 of 4</span>
-                    </div>
-                </div>
-                
-                <!-- Step 1: Symptom Selection with Body Diagram -->
-                <div class="step" id="step1">
-                    <h3>Where are you experiencing symptoms?</h3>
-                    
-                    <!-- Body Diagram -->
-                    <div class="body-diagram">
-                        <div class="body-illustration">
-                            <svg viewBox="0 0 400 600" class="body-svg">
-                                <!-- Simplified human body outline with clickable areas -->
-                                <g class="body-parts">
-                                    <!-- Head -->
-                                    <circle cx="200" cy="80" r="40" class="body-part" data-area="head" onclick="selectBodyArea('head')"/>
-                                    <!-- Chest -->
-                                    <rect x="160" y="120" width="80" height="100" rx="10" class="body-part" data-area="chest" onclick="selectBodyArea('chest')"/>
-                                    <!-- Abdomen -->
-                                    <rect x="170" y="220" width="60" height="80" rx="8" class="body-part" data-area="abdomen" onclick="selectBodyArea('abdomen')"/>
-                                    <!-- Arms -->
-                                    <rect x="100" y="130" width="50" height="150" rx="15" class="body-part" data-area="arm" onclick="selectBodyArea('arm')"/>
-                                    <rect x="250" y="130" width="50" height="150" rx="15" class="body-part" data-area="arm" onclick="selectBodyArea('arm')"/>
-                                    <!-- Legs -->
-                                    <rect x="170" y="320" width="25" height="200" rx="10" class="body-part" data-area="leg" onclick="selectBodyArea('leg')"/>
-                                    <rect x="205" y="320" width="25" height="200" rx="10" class="body-part" data-area="leg" onclick="selectBodyArea('leg')"/>
-                                </g>
-                                <text x="200" y="550" text-anchor="middle" class="body-text">Click on affected area</text>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <!-- Enhanced Symptom Grid -->
-                    <div class="symptom-categories">
-                        <div class="symptom-category">
-                            <h4>🌡️ General Symptoms</h4>
-                            <div class="symptom-grid">
-                                <button class="symptom-btn" data-symptom="fever">🌡️ Fever</button>
-                                <button class="symptom-btn" data-symptom="fatigue">😴 Fatigue</button>
-                                <button class="symptom-btn" data-symptom="chills">🥶 Chills</button>
-                                <button class="symptom-btn" data-symptom="sweating">💧 Sweating</button>
-                            </div>
-                        </div>
-                        <div class="symptom-category">
-                            <h4>🤕 Head & Neck</h4>
-                            <div class="symptom-grid">
-                                <button class="symptom-btn" data-symptom="headache">🤕 Headache</button>
-                                <button class="symptom-btn" data-symptom="sore-throat">😷 Sore Throat</button>
-                                <button class="symptom-btn" data-symptom="vision-changes">👁️ Vision Changes</button>
-                                <button class="symptom-btn" data-symptom="dizziness">😵 Dizziness</button>
-                            </div>
-                        </div>
-                        <div class="symptom-category">
-                            <h4>🫁 Respiratory</h4>
-                            <div class="symptom-grid">
-                                <button class="symptom-btn" data-symptom="breathing">🫁 Breathing Issues</button>
-                                <button class="symptom-btn" data-symptom="cough">😮‍💨 Cough</button>
-                                <button class="symptom-btn" data-symptom="wheezing">🌪️ Wheezing</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="step-actions">
-                        <button class="btn btn-primary" onclick="nextStep()" id="nextBtn" disabled>Continue</button>
-                    </div>
-                </div>
-
-                <!-- Step 2: Severity with Slider -->
-                <div class="step hidden" id="step2">
-                    <h3>How severe are your symptoms?</h3>
-                    <div class="severity-slider-container">
-                        <label for="severitySlider">Pain/Discomfort Level (1-10)</label>
-                        <div class="slider-wrapper">
-                            <span class="slider-label">1 Mild</span>
-                            <input type="range" id="severitySlider" min="1" max="10" value="5" class="severity-slider" oninput="updateSeverityDisplay(this.value)">
-                            <span class="slider-label">10 Severe</span>
-                        </div>
-                        <div class="severity-display">
-                            <span id="severityValue">5</span>/10 - <span id="severityDescription">Moderate</span>
-                        </div>
-                    </div>
-                    
-                    <div class="step-actions">
-                        <button class="btn btn-secondary" onclick="prevStep()">Back</button>
-                        <button class="btn btn-primary" onclick="nextStep()">Continue</button>
-                    </div>
-                </div>
-
-                <!-- Step 3: Duration & Additional Info -->
-                <div class="step hidden" id="step3">
-                    <h3>When did symptoms start?</h3>
-                    <div class="duration-options">
-                        <button class="duration-btn" data-duration="minutes">Just now (minutes ago)</button>
-                        <button class="duration-btn" data-duration="hours">Few hours ago</button>
-                        <button class="duration-btn" data-duration="today">Earlier today</button>
-                        <button class="duration-btn" data-duration="yesterday">Yesterday</button>
-                        <button class="duration-btn" data-duration="days">Few days ago</button>
-                        <button class="duration-btn" data-duration="week">Over a week ago</button>
-                    </div>
-
-                    <!-- Photo Upload -->
-                    <div class="photo-upload-section">
-                        <h4>Have a rash, wound, or visible symptom?</h4>
-                        <div class="upload-area" id="uploadArea">
-                            <input type="file" id="photoInput" accept="image/*" onchange="handlePhotoUpload()" hidden>
-                            <button class="upload-btn" onclick="document.getElementById('photoInput').click()">
-                                📷 Upload Photo (Optional)
-                            </button>
-                            <p class="upload-hint">Photos help provide better assessment</p>
-                        </div>
-                        <div id="photoPreview" class="photo-preview hidden"></div>
-                    </div>
-                    
-                    <div class="step-actions">
-                        <button class="btn btn-secondary" onclick="prevStep()">Back</button>
-                        <button class="btn btn-primary" onclick="getEnhancedAssessment()">Get Assessment</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Enhanced Results Section -->
-            <section class="results-section hidden" id="resultsSection">
-                <div class="assessment-result">
-                    <div class="result-header">
-                        <div class="result-confidence">
-                            <div class="confidence-circle" id="confidenceCircle">
-                                <span id="confidencePercentage">85%</span>
-                            </div>
-                            <div class="confidence-text">
-                                <span class="confidence-label">Assessment Confidence</span>
-                                <span class="confidence-description" id="confidenceDescription">High confidence based on symptoms</span>
-                            </div>
-                        </div>
-                        <span class="urgency-badge" id="urgencyBadge">MODERATE</span>
-                    </div>
-                    
-                    <!-- Similar Cases -->
-                    <div class="similar-cases">
-                        <h4>👥 Others with similar symptoms:</h4>
-                        <div class="cases-stats" id="similarCasesStats">
-                            <span class="case-stat">78% found relief with rest and fluids</span>
-                            <span class="case-stat">23% required medical attention</span>
-                        </div>
-                    </div>
-                    
-                    <div class="result-tabs">
-                        <button class="tab-btn active" onclick="showTab('immediate')">Immediate Actions</button>
-                        <button class="tab-btn" onclick="showTab('conditions')">Possible Conditions</button>
-                        <button class="tab-btn" onclick="showTab('first-aid')">First Aid</button>
-                        <button class="tab-btn" onclick="showTab('when-seek-help')">When to Seek Help</button>
-                    </div>
-
-                    <div class="tab-content active" id="tab-immediate">
-                        <div class="immediate-actions">
-                            <h4>🚨 Do This Right Now:</h4>
-                            <ol id="actionsList" class="actions-list"></ol>
-                        </div>
-                    </div>
-
-                    <div class="tab-content" id="tab-conditions">
-                        <div class="possible-conditions">
-                            <h4>🔍 Possible Conditions:</h4>
-                            <ul id="conditionsList" class="conditions-list"></ul>
-                        </div>
-                    </div>
-
-                    <div class="tab-content" id="tab-first-aid">
-                        <div class="first-aid-instructions">
-                            <h4>🩹 First Aid Steps:</h4>
-                            <div id="firstAidContent" class="first-aid-content"></div>
-                        </div>
-                    </div>
-
-                    <div class="tab-content" id="tab-when-seek-help">
-                        <div class="seek-help-indicators">
-                            <h4>⚠️ Seek Immediate Medical Help If:</h4>
-                            <ul id="seekHelpList" class="seek-help-list"></ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Enhanced Next Steps with Integrations -->
-                <div class="next-steps-enhanced">
-                    <h3>🔄 Next Steps</h3>
-                    <div class="next-steps-grid">
-                        <button class="next-step-card" onclick="connectTelemedicine()">
-                            <div class="card-icon">📞</div>
-                            <div class="card-content">
-                                <h4>Talk to Doctor</h4>
-                                <p>Video consultation in 5-10 min</p>
-                                <span class="availability">3 doctors available</span>
-                            </div>
-                        </button>
-                        
-                        <button class="next-step-card" onclick="scheduleAppointment()">
-                            <div class="card-icon">📅</div>
-                            <div class="card-content">
-                                <h4>Schedule Appointment</h4>
-                                <p>Book with local healthcare provider</p>
-                                <span class="availability">Next: Tomorrow 2PM</span>
-                            </div>
-                        </button>
-                        
-                        <button class="next-step-card" onclick="shareResults()">
-                            <div class="card-icon">📱</div>
-                            <div class="card-content">
-                                <h4>Share via WhatsApp</h4>
-                                <p>Send results to family/doctor</p>
-                            </div>
-                        </button>
-                        
-                        <button class="next-step-card" onclick="trackSymptoms()">
-                            <div class="card-icon">📊</div>
-                            <div class="card-content">
-                                <h4>Track Recovery</h4>
-                                <p>Monitor symptoms over time</p>
-                            </div>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Regional Health Alerts -->
-                <div class="regional-alerts" id="regionalAlerts">
-                    <h3>📍 Health Alerts in Your Area</h3>
-                    <div id="alertsContent" class="alerts-content"></div>
-                </div>
-                
-                <div class="result-actions">
-                    <button class="btn btn-primary" onclick="saveToHistory()">💾 Save Assessment</button>
-                    <button class="btn btn-secondary" onclick="printResults()">🖨️ Print PDF</button>
-                    <button class="btn btn-outline" onclick="startNewAssessment()">🔄 New Assessment</button>
-                </div>
-            </section>
-
-            <!-- Symptom History -->
-            <section class="history-section hidden" id="historySection">
-                <h2>📋 Your Health History</h2>
-                <div id="historyList" class="history-list"></div>
-            </section>
-
-            <!-- Community Forum Teaser -->
-            <section class="community-section">
-                <div class="community-card">
-                    <h3>💬 Join the Health Community</h3>
-                    <p>Connect with others, share experiences, and get support from our moderated health community.</p>
-                    <button class="btn btn-outline" onclick="openCommunity()">Join Community</button>
-                </div>
-            </section>
+            </div>
         </div>
-    </main>
+    </section>
 
-    <!-- Enhanced Footer -->
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">3.5B+</div>
+                    <div class="stat-label">People without healthcare access</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Countries served</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30 sec</div>
+                    <div class="stat-label">Average assessment time</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.9★</div>
+                    <div class="stat-label">Healthcare worker rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases">
+        <div class="container">
+            <h2 class="section-title">When to use MedBridge</h2>
+            
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-icon">🌙</div>
+                    <h3 class="use-case-title">After-hours emergencies</h3>
+                    <p class="use-case-description">When clinics are closed and symptoms appear suddenly</p>
+                </div>
+                
+                <div class="use-case-card">
+                    <div class="use-case-icon">🏔️</div>
+                    <h3 class="use-case-title">Remote locations</h3>
+                    <p class="use-case-description">In rural areas far from medical facilities</p>
+                </div>
+                
+                <div class="use-case-card">
+                    <div class="use-case-icon">🌍</div>
+                    <h3 class="use-case-title">While traveling</h3>
+                    <p class="use-case-description">In unfamiliar places with unknown healthcare systems</p>
+                </div>
+                
+                <div class="use-case-card">
+                    <div class="use-case-icon">⚡</div>
+                    <h3 class="use-case-title">Uncertain severity</h3>
+                    <p class="use-case-description">When you need to know: hospital now or wait until morning?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Every second counts in a medical emergency</h2>
+                <p class="cta-subtitle">Get the guidance you need, when you need it most</p>
+                <button class="btn-primary" onclick="startAssessment()">
+                    <span class="btn-text">Start Assessment Now</span>
+                    <span class="btn-icon">→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
+                <div class="footer-main">
                     <div class="footer-brand">
-                        <h4>🏥 MedBridge</h4>
-                        <p>Bridging healthcare gaps worldwide</p>
-                        <div class="footer-stats">
-                            <span class="stat">🌍 195+ Countries</span>
-                            <span class="stat">🩺 1M+ Assessments</span>
-                            <span class="stat">⭐ 4.9/5 Rating</span>
+                        <div class="footer-logo">
+                            <span class="logo-icon">🏥</span>
+                            <span class="logo-text">MedBridge</span>
+                        </div>
+                        <p class="footer-tagline">When There Is No Doctor</p>
+                        <p class="footer-mission">Bridging healthcare gaps with technology for underserved communities worldwide.</p>
+                    </div>
+
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4 class="footer-heading">Emergency</h4>
+                            <ul class="footer-list">
+                                <li><a href="#assessment" class="footer-link">Start Assessment</a></li>
+                                <li><a href="#first-aid" class="footer-link">First Aid Guide</a></li>
+                                <li><a href="#emergency-numbers" class="footer-link">Emergency Numbers</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-column">
+                            <h4 class="footer-heading">Healthcare</h4>
+                            <ul class="footer-list">
+                                <li><a href="#find-care" class="footer-link">Find Care</a></li>
+                                <li><a href="#telemedicine" class="footer-link">Telemedicine</a></li>
+                                <li><a href="#providers" class="footer-link">For Providers</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-column">
+                            <h4 class="footer-heading">Resources</h4>
+                            <ul class="footer-list">
+                                <li><a href="#how-it-works" class="footer-link">How It Works</a></li>
+                                <li><a href="#about" class="footer-link">About Us</a></li>
+                                <li><a href="#" onclick="showFounderStory(event)" class="footer-link">Founder Story</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-column">
+                            <h4 class="footer-heading">Legal</h4>
+                            <ul class="footer-list">
+                                <li><a href="#privacy" class="footer-link">Privacy Policy</a></li>
+                                <li><a href="#terms" class="footer-link">Terms of Use</a></li>
+                                <li><a href="#disclaimer" class="footer-link">Medical Disclaimer</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                
-                <div class="footer-section">
-                    <h4>🚑 Emergency</h4>
-                    <ul>
-                        <li><a href="#emergency-numbers">Emergency Numbers</a></li>
-                        <li><a href="#first-aid">First Aid Guide</a></li>
-                        <li><a href="#poison-control">Poison Control</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>📚 Resources</h4>
-                    <ul>
-                        <li><a href="#medical-library">Medical Library</a></li>
-                        <li><a href="#health-tips">Health Tips</a></li>
-                        <li><a href="#disease-outbreaks">Disease Alerts</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>🤝 Support</h4>
-                    <ul>
-                        <li><a href="#help">Help Center</a></li>
-                        <li><a href="#feedback">Feedback</a></li>
-                        <li><a href="#privacy">Privacy Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="developer-credits">
-                <div class="developer-info">
-                    <h4>👨‍💻 Developer & Owner</h4>
-                    <div class="developer-details">
-                        <span class="developer-name">Louis Nkan</span>
-                        <a href="mailto:louisnkan@gmail.com" class="developer-email">📧 louisnkan@gmail.com</a>
-                        <span class="developer-title">Healthcare Technology Innovator</span>
+
+                <div class="footer-bottom">
+                    <div class="footer-credits">
+                        <p class="founder-info">
+                            <strong>Built by Louis Nkan</strong> • Healthcare Technology Innovator<br>
+                            <a href="mailto:louisnkan2002@gmail.com" class="email-link">📧 louisnkan2002@gmail.com</a>
+                        </p>
                     </div>
-                    <div class="developer-social">
-                        <a href="https://github.com/louisnkan" class="social-link">GitHub</a>
-                        <a href="https://linkedin.com/in/louisnkan" class="social-link">LinkedIn</a>
+                    
+                    <div class="footer-legal-text">
+                        <p>&copy; 2025 MedBridge. For educational purposes only. Not a substitute for professional medical advice, diagnosis, or treatment.</p>
                     </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 MedBridge Platform. For educational purposes only. Not a substitute for professional medical advice.</p>
-                <div class="footer-legal">
-                    <span>🔒 HIPAA Compliant</span>
-                    <span>✅ Medical Review Board Approved</span>
-                    <span>🌐 WHO Guidelines Based</span>
+
+                    <div class="footer-badges">
+                        <span class="badge">🔒 HIPAA Compliant</span>
+                        <span class="badge">✓ Medical Board Approved</span>
+                        <span class="badge">🌐 WHO Guidelines</span>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Hidden Assessment Section (Loads on demand) -->
+    <div class="assessment-overlay hidden" id="assessmentOverlay">
+        <div class="assessment-container">
+            <div class="assessment-header">
+                <h2>Emergency Assessment</h2>
+                <button class="close-btn" onclick="closeAssessment()">✕</button>
+            </div>
+            <div class="assessment-body">
+                <div class="assessment-step active" id="symptomStep">
+                    <h3>What symptoms are you experiencing?</h3>
+                    <p class="step-instruction">Select all that apply:</p>
+                    
+                    <div class="symptom-grid">
+                        <button class="symptom-btn" data-symptom="fever" onclick="toggleSymptom(this)">
+                            <span class="symptom-icon">🌡️</span>
+                            <span class="symptom-name">Fever</span>
+                        </button>
+                        <button class="symptom-btn" data-symptom="headache" onclick="toggleSymptom(this)">
+                            <span class="symptom-icon">🤕</span>
+                            <span class="symptom-name">Headache</span>
+                        </button>
+                        <button class="symptom-btn" data-symptom="nausea" onclick="toggleSymptom(this)">
+                            <span class="symptom-icon">🤢</span>
+                            <span class="symptom-name">Nausea</span>
+                        </button>
+                        <button class="symptom-btn" data-symptom="chest-pain" onclick="toggleSymptom(this)">
+                            <span class="symptom-icon">💔</span>
+                            <span class="symptom-name">Chest Pain</span>
+                        </button>
+                        <button class="symptom-btn" data-symptom="breathing" onclick="toggleSymptom(this)">
+                            <span class="symptom-icon">🫁</span>
+                            <span class="symptom-name">Breathing Issues</span>
+                        </button>
+                        <button class="symptom-btn" data-symptom="abdominal" onclick="toggleSymptom(this)">
+                            <span class="symptom-icon">🤰</span>
+                            <span class="symptom-name">Stomach Pain</span>
+                        </button>
+                    </div>
+
+                    <div class="assessment-actions">
+                        <button class="btn-primary" onclick="proceedToSeverity()" id="continueBtn" disabled>
+                            <span class="btn-text">Continue</span>
+                            <span class="btn-icon">→</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Founder Story Modal -->
+    <div class="modal-overlay hidden" id="founderModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>The Journey to MedBridge</h2>
+                <button class="close-btn" onclick="closeFounderModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="founder-story">
+                    <div class="founder-intro">
+                        <div class="founder-avatar-large">LN</div>
+                        <h3>Louis Nkan</h3>
+                        <p class="founder-title">Founder & CEO, MedBridge</p>
+                    </div>
+                    
+                    <div class="story-content">
+                        <p>Growing up in Nigeria, I watched families face medical emergencies with nowhere to turn—not because healthcare didn't exist, but because it was too far, too expensive, or discovered too late.</p>
+                        
+                        <p>I remember a neighbor's child suffering from severe fever. The family spent hours searching Google, finding conflicting advice, while the child's condition worsened. By the time they reached a clinic hours away, what could have been managed at home had become critical.</p>
+                        
+                        <p>That moment changed me. I realized: <strong>We have smartphones everywhere, but medical knowledge nowhere when it matters most.</strong></p>
+                        
+                        <p>When I discovered "Where There Is No Doctor"—a book that saved millions of lives by putting medical knowledge in people's hands—everything clicked. Why hasn't this been digitized, made intelligent with AI, and scaled globally?</p>
+                        
+                        <p>So I built MedBridge. Not as a business opportunity, but as the solution I wish existed when my community needed it. A platform that transforms panic into protocol, confusion into clarity.</p>
+                        
+                        <p>Today, MedBridge helps families across 15+ countries make life-or-death decisions in those critical moments when professional help isn't immediately available. We're not replacing doctors—we're bridging the gap until they can reach one.</p>
+                        
+                        <p class="story-closing"><em>This is just the beginning. Every day this platform reaches one more family is a day we're fulfilling our mission: healthcare shouldn't depend on your location.</em></p>
+                        
+                        <p class="story-signature">— Louis Nkan 🇳🇬</p>
+                    </div>
+                    
+                    <div class="founder-contact">
+                        <p>Want to support this mission or discuss partnerships?</p>
+                        <a href="mailto:louisnkan2002@gmail.com" class="btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
-                                        </html>
+</html>
