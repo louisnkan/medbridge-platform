@@ -1,4 +1,4 @@
-🏥 MedBridge: When There Is No Doctor
+🏥 afya-health: When There Is No Doctor
 
 **Live Demo:** https://louisnkan.github.io/medbridge-platform/
 
