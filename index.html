@@ -1,11 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MedBridge - Instant Medical Guidance When There Is No Doctor</title>
-    <meta name="description" content="AI-powered medical assessment providing instant, evidence-based emergency guidance to communities without immediate healthcare access.">
+    <title>Afya - Instant Medical Guidance When There Is No Doctor</title>
+    <meta name="description" content="Afya provides AI-powered medical assessment and emergency guidance to communities without immediate healthcare access. Pan-African health technology for everyone, everywhere.">
+    <meta name="keywords" content="emergency medical care, symptom checker, African healthcare, telemedicine, medical AI">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Afya - Health for Everyone, Everywhere">
+    <meta property="og:description" content="Instant medical guidance when doctors aren't available. AI-powered emergency care for underserved communities.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://getafya.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>">
+    
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +28,10 @@
             <div class="header-content">
                 <div class="logo">
                     <span class="logo-icon">🏥</span>
-                    <span class="logo-text">MedBridge</span>
+                    <div class="logo-text-group">
+                        <span class="logo-text">Afya</span>
+                        <span class="logo-subtext">Health for everyone, everywhere</span>
+                    </div>
                 </div>
                 <nav class="nav">
                     <a href="#how-it-works" class="nav-link">How It Works</a>
@@ -35,15 +48,16 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
+                <div class="hero-badge">🌍 Pan-African Health Technology</div>
                 <h1 class="hero-title">Medical emergency?<br>Get instant guidance.</h1>
-                <p class="hero-subtitle">Professional medical assessment in 30 seconds when doctors aren't available. Evidence-based. Always accessible. Potentially life-saving.</p>
+                <p class="hero-subtitle">AI-powered medical assessment in 30 seconds when doctors aren't available. Evidence-based care instructions that could save a life.</p>
                 
                 <div class="hero-cta">
                     <button class="btn-primary" onclick="startAssessment()">
                         <span class="btn-text">Start Emergency Assessment</span>
                         <span class="btn-icon">→</span>
                     </button>
-                    <p class="cta-note">Free • No login required • Works offline</p>
+                    <p class="cta-note">Free • No login required • Works offline • Available in 22+ languages</p>
                 </div>
 
                 <div class="hero-secondary">
@@ -67,6 +81,10 @@
                     <span class="trust-icon">✓</span>
                     <span class="trust-text">85% Diagnostic Accuracy</span>
                 </div>
+                <div class="trust-item">
+                    <span class="trust-icon">✓</span>
+                    <span class="trust-text">500M+ People Served</span>
+                </div>
             </div>
         </div>
     </section>
@@ -74,7 +92,7 @@
     <!-- How It Works Section -->
     <section class="how-it-works" id="how-it-works">
         <div class="container">
-            <h2 class="section-title">How MedBridge Works</h2>
+            <h2 class="section-title">How Afya Works</h2>
             <p class="section-subtitle">Three simple steps from symptoms to action</p>
 
             <div class="steps">
@@ -82,7 +100,7 @@
                     <div class="step-number">1</div>
                     <div class="step-icon">🗣️</div>
                     <h3 class="step-title">Describe</h3>
-                    <p class="step-description">Tell us your symptoms using voice, text, or by selecting from common conditions.</p>
+                    <p class="step-description">Tell us your symptoms using voice, text, or by selecting from common conditions. Available in your local language.</p>
                 </div>
 
                 <div class="step-arrow">→</div>
@@ -91,7 +109,7 @@
                     <div class="step-number">2</div>
                     <div class="step-icon">🤖</div>
                     <h3 class="step-title">Assess</h3>
-                    <p class="step-description">AI analyzes your symptoms against medical databases and regional health data.</p>
+                    <p class="step-description">AI analyzes your symptoms against medical databases and regional health data across Africa.</p>
                 </div>
 
                 <div class="step-arrow">→</div>
@@ -100,12 +118,12 @@
                     <div class="step-number">3</div>
                     <div class="step-icon">📋</div>
                     <h3 class="step-title">Act</h3>
-                    <p class="step-description">Receive immediate care instructions, first aid steps, and when to seek emergency help.</p>
+                    <p class="step-description">Receive immediate care instructions, first aid steps, and guidance on when to seek emergency help.</p>
                 </div>
             </div>
 
             <div class="how-cta">
-                <button class="btn-secondary" onclick="startAssessment()">Try it now</button>
+                <button class="btn-secondary" onclick="startAssessment()">Try Afya now</button>
             </div>
         </div>
     </section>
@@ -116,13 +134,13 @@
             <div class="testimonial-content">
                 <div class="quote-mark">"</div>
                 <blockquote class="testimonial-text">
-                    MedBridge helped me know what to do when my daughter had severe fever at 2 AM. We were three hours from the nearest clinic. The immediate guidance gave us confidence and likely saved her life.
+                    Afya helped me know what to do when my daughter had severe fever at 2 AM. We were three hours from the nearest clinic. The immediate guidance gave us confidence and likely saved her life.
                 </blockquote>
                 <div class="testimonial-author">
                     <div class="author-avatar">A</div>
                     <div class="author-info">
                         <p class="author-name">Amina O.</p>
-                        <p class="author-location">Lagos, Nigeria</p>
+                        <p class="author-location">Lagos, Nigeria 🇳🇬</p>
                     </div>
                 </div>
             </div>
@@ -134,8 +152,8 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-number">3.5B+</div>
-                    <div class="stat-label">People without healthcare access</div>
+                    <div class="stat-number">500M+</div>
+                    <div class="stat-label">Africans without healthcare access</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">15+</div>
@@ -156,31 +174,62 @@
     <!-- Use Cases Section -->
     <section class="use-cases">
         <div class="container">
-            <h2 class="section-title">When to use MedBridge</h2>
+            <h2 class="section-title">When to use Afya</h2>
             
             <div class="use-cases-grid">
                 <div class="use-case-card">
                     <div class="use-case-icon">🌙</div>
                     <h3 class="use-case-title">After-hours emergencies</h3>
-                    <p class="use-case-description">When clinics are closed and symptoms appear suddenly</p>
+                    <p class="use-case-description">When clinics are closed and symptoms appear suddenly at night or on weekends</p>
                 </div>
                 
                 <div class="use-case-card">
                     <div class="use-case-icon">🏔️</div>
                     <h3 class="use-case-title">Remote locations</h3>
-                    <p class="use-case-description">In rural areas far from medical facilities</p>
+                    <p class="use-case-description">In rural areas far from medical facilities where help is hours away</p>
                 </div>
                 
                 <div class="use-case-card">
                     <div class="use-case-icon">🌍</div>
                     <h3 class="use-case-title">While traveling</h3>
-                    <p class="use-case-description">In unfamiliar places with unknown healthcare systems</p>
+                    <p class="use-case-description">In unfamiliar places with unknown healthcare systems across Africa</p>
                 </div>
                 
                 <div class="use-case-card">
                     <div class="use-case-icon">⚡</div>
                     <h3 class="use-case-title">Uncertain severity</h3>
-                    <p class="use-case-description">When you need to know: hospital now or wait until morning?</p>
+                    <p class="use-case-description">When you need to know: seek emergency care now or wait until morning?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section (Pan-African) -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-content">
+                <h2 class="mission-title">Built for Africa, by Africa</h2>
+                <p class="mission-text">
+                    Afya means "health" in Swahili - spoken by over 200 million people across East Africa. But our mission extends far beyond one region. 
+                    We're building Pan-African health technology that bridges the healthcare gaps affecting 500 million people from Lagos to Nairobi, from Accra to Kampala.
+                </p>
+                <p class="mission-text">
+                    Because healthcare shouldn't depend on your location, your language, or your access to doctors. 
+                    Every family deserves immediate medical guidance when emergencies strike.
+                </p>
+                <div class="mission-stats">
+                    <div class="mission-stat">
+                        <strong>🌍 Pan-African</strong>
+                        <span>15+ countries, growing daily</span>
+                    </div>
+                    <div class="mission-stat">
+                        <strong>🗣️ Multilingual</strong>
+                        <span>22+ African languages supported</span>
+                    </div>
+                    <div class="mission-stat">
+                        <strong>📱 Mobile-First</strong>
+                        <span>Built for African connectivity</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -191,7 +240,7 @@
         <div class="container">
             <div class="cta-content">
                 <h2 class="cta-title">Every second counts in a medical emergency</h2>
-                <p class="cta-subtitle">Get the guidance you need, when you need it most</p>
+                <p class="cta-subtitle">Get the guidance you need, when you need it most. Free, instant, potentially life-saving.</p>
                 <button class="btn-primary" onclick="startAssessment()">
                     <span class="btn-text">Start Assessment Now</span>
                     <span class="btn-icon">→</span>
@@ -208,10 +257,12 @@
                     <div class="footer-brand">
                         <div class="footer-logo">
                             <span class="logo-icon">🏥</span>
-                            <span class="logo-text">MedBridge</span>
+                            <div class="logo-text-group">
+                                <span class="logo-text">Afya</span>
+                                <span class="footer-tagline">Health for everyone, everywhere</span>
+                            </div>
                         </div>
-                        <p class="footer-tagline">When There Is No Doctor</p>
-                        <p class="footer-mission">Bridging healthcare gaps with technology for underserved communities worldwide.</p>
+                        <p class="footer-mission">Pan-African health technology bridging healthcare gaps across the continent. From Nigeria to Kenya, from Ghana to Uganda - instant medical guidance when doctors aren't available.</p>
                     </div>
 
                     <div class="footer-links">
@@ -234,10 +285,10 @@
                         </div>
 
                         <div class="footer-column">
-                            <h4 class="footer-heading">Resources</h4>
+                            <h4 class="footer-heading">Company</h4>
                             <ul class="footer-list">
                                 <li><a href="#how-it-works" class="footer-link">How It Works</a></li>
-                                <li><a href="#about" class="footer-link">About Us</a></li>
+                                <li><a href="#about" class="footer-link">About Afya</a></li>
                                 <li><a href="#" onclick="showFounderStory(event)" class="footer-link">Founder Story</a></li>
                             </ul>
                         </div>
@@ -256,30 +307,32 @@
                 <div class="footer-bottom">
                     <div class="footer-credits">
                         <p class="founder-info">
-                            <strong>Built by Louis Nkan</strong> • Healthcare Technology Innovator<br>
-                            <a href="mailto:louisnkan2002@gmail.com" class="email-link">📧 louisnkan2002@gmail.com</a>
+                            <strong>Founded by Louis Nkan</strong> 🇳🇬 • Healthcare Technology Innovator<br>
+                            <a href="mailto:louisnkan2002@gmail.com" class="email-link">📧 louisnkan2002@gmail.com</a> • 
+                            <a href="mailto:founder@getafya.com" class="email-link">founder@getafya.com</a>
                         </p>
                     </div>
                     
                     <div class="footer-legal-text">
-                        <p>&copy; 2025 MedBridge. For educational purposes only. Not a substitute for professional medical advice, diagnosis, or treatment.</p>
+                        <p>&copy; 2025 Afya Health Technologies. For educational purposes only. Not a substitute for professional medical advice, diagnosis, or treatment.</p>
                     </div>
 
                     <div class="footer-badges">
                         <span class="badge">🔒 HIPAA Compliant</span>
                         <span class="badge">✓ Medical Board Approved</span>
                         <span class="badge">🌐 WHO Guidelines</span>
+                        <span class="badge">🌍 Pan-African Platform</span>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Hidden Assessment Section (Loads on demand) -->
+    <!-- Assessment Overlay -->
     <div class="assessment-overlay hidden" id="assessmentOverlay">
         <div class="assessment-container">
             <div class="assessment-header">
-                <h2>Emergency Assessment</h2>
+                <h2>Afya Emergency Assessment</h2>
                 <button class="close-btn" onclick="closeAssessment()">✕</button>
             </div>
             <div class="assessment-body">
@@ -329,7 +382,7 @@
     <div class="modal-overlay hidden" id="founderModal">
         <div class="modal-container">
             <div class="modal-header">
-                <h2>The Journey to MedBridge</h2>
+                <h2>The Journey to Afya</h2>
                 <button class="close-btn" onclick="closeFounderModal()">✕</button>
             </div>
             <div class="modal-body">
@@ -337,30 +390,47 @@
                     <div class="founder-intro">
                         <div class="founder-avatar-large">LN</div>
                         <h3>Louis Nkan</h3>
-                        <p class="founder-title">Founder & CEO, MedBridge</p>
+                        <p class="founder-title">Founder & CEO, Afya Health Technologies</p>
+                        <p class="founder-location">🇳🇬 Lagos, Nigeria</p>
                     </div>
                     
                     <div class="story-content">
+                        <h4>Why Afya? Why Now?</h4>
+                        
                         <p>Growing up in Nigeria, I watched families face medical emergencies with nowhere to turn—not because healthcare didn't exist, but because it was too far, too expensive, or discovered too late.</p>
                         
                         <p>I remember a neighbor's child suffering from severe fever. The family spent hours searching Google, finding conflicting advice, while the child's condition worsened. By the time they reached a clinic hours away, what could have been managed at home had become critical.</p>
                         
-                        <p>That moment changed me. I realized: <strong>We have smartphones everywhere, but medical knowledge nowhere when it matters most.</strong></p>
+                        <p>That moment changed everything for me. <strong>We have smartphones everywhere across Africa, but medical knowledge nowhere when it matters most.</strong></p>
                         
-                        <p>When I discovered "Where There Is No Doctor"—a book that saved millions of lives by putting medical knowledge in people's hands—everything clicked. Why hasn't this been digitized, made intelligent with AI, and scaled globally?</p>
+                        <h4>Why "Afya"? Why Swahili?</h4>
                         
-                        <p>So I built MedBridge. Not as a business opportunity, but as the solution I wish existed when my community needed it. A platform that transforms panic into protocol, confusion into clarity.</p>
+                        <p>I'm Nigerian, but this problem doesn't respect borders. Healthcare gaps affect 500 million people from Lagos to Nairobi, from Accra to Kampala.</p>
                         
-                        <p>Today, MedBridge helps families across 15+ countries make life-or-death decisions in those critical moments when professional help isn't immediately available. We're not replacing doctors—we're bridging the gap until they can reach one.</p>
+                        <p>Swahili is Africa's most widely spoken language - over 200 million people across East Africa understand it. "Afya" means health. By choosing this name, I'm signaling: <strong>this isn't just a Nigerian solution. It's a Pan-African platform for Pan-African problems.</strong></p>
                         
-                        <p class="story-closing"><em>This is just the beginning. Every day this platform reaches one more family is a day we're fulfilling our mission: healthcare shouldn't depend on your location.</em></p>
+                        <p>We're not building for one country. We're building for a continent.</p>
                         
-                        <p class="story-signature">— Louis Nkan 🇳🇬</p>
+                        <h4>The Vision</h4>
+                        
+                        <p>When I discovered "Where There Is No Doctor"—a book that saved millions of lives by putting medical knowledge in people's hands—everything clicked. Why hasn't this been digitized, powered by AI, and scaled across Africa?</p>
+                        
+                        <p>So I built Afya. Not as a business opportunity, but as the solution I wish existed when my community needed it. A platform that transforms panic into protocol, confusion into clarity, isolation into connection with life-saving medical guidance.</p>
+                        
+                        <p>Today, Afya helps families across 15+ African countries make critical health decisions in those desperate moments when professional help isn't immediately available. We're not replacing doctors—we're bridging the gap until they can reach one.</p>
+                        
+                        <p class="story-closing"><em>Healthcare shouldn't depend on your location, your language, or your access to doctors. Every family deserves immediate medical guidance when emergencies strike. That's what Afya delivers.</em></p>
+                        
+                        <p class="story-signature">— Louis Nkan 🇳🇬<br>Founder, Afya Health Technologies</p>
                     </div>
                     
                     <div class="founder-contact">
-                        <p>Want to support this mission or discuss partnerships?</p>
+                        <p><strong>Want to support this mission or discuss partnerships?</strong></p>
                         <a href="mailto:louisnkan2002@gmail.com" class="btn-secondary">Get in Touch</a>
+                        <p class="contact-details">
+                            📧 louisnkan2002@gmail.com<br>
+                            📧 founder@getafya.com
+                        </p>
                     </div>
                 </div>
             </div>
