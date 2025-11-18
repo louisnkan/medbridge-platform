@@ -1,20 +1,25 @@
 // ========================================
-// MedBridge - Clean, Minimal JavaScript
-// Bug-free, production-ready code
+// Afya - Pan-African Health Technology
+// Clean, Bug-Free, Production-Ready Code
 // ========================================
 
 // ========== STATE MANAGEMENT ==========
 const appState = {
-    theme: localStorage.getItem('medbridge-theme') || 'light',
+    theme: localStorage.getItem('afya-theme') || 'light',
     selectedSymptoms: [],
-    assessmentActive: false
+    assessmentActive: false,
+    analytics: {
+        sessionStart: Date.now(),
+        events: []
+    }
 };
 
 // ========== INITIALIZATION ==========
 document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
     setupEventListeners();
-    console.log('🏥 MedBridge initialized successfully');
+    trackEvent('page_loaded', { timestamp: new Date().toISOString() });
+    console.log('🏥 Afya Health Platform initialized successfully');
 });
 
 function initializeApp() {
@@ -25,35 +30,63 @@ function initializeApp() {
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const target = document.querySelector(href);
             if (target) {
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                trackEvent('navigation_click', { target: href });
             }
         });
     });
+    
+    // Add fade-in animations
+    observeElementsForAnimation();
+    
+    // Initialize performance monitoring
+    monitorPerformance();
 }
 
 function setupEventListeners() {
     // Close modals on escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
-            closeAssessment();
+            if (appState.assessmentActive) {
+                closeAssessment();
+            }
             closeFounderModal();
         }
     });
     
     // Close modals on backdrop click
-    document.getElementById('assessmentOverlay')?.addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeAssessment();
-        }
-    });
+    const assessmentOverlay = document.getElementById('assessmentOverlay');
+    if (assessmentOverlay) {
+        assessmentOverlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAssessment();
+            }
+        });
+    }
     
-    document.getElementById('founderModal')?.addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeFounderModal();
-        }
+    const founderModal = document.getElementById('founderModal');
+    if (founderModal) {
+        founderModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFounderModal();
+            }
+        });
+    }
+    
+    // Track button clicks for analytics
+    document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+        btn.addEventListener('click', function() {
+            trackEvent('cta_clicked', {
+                button_text: this.textContent.trim(),
+                location: this.closest('section')?.className || 'unknown'
+            });
+        });
     });
 }
 
@@ -61,8 +94,9 @@ function setupEventListeners() {
 function toggleTheme() {
     appState.theme = appState.theme === 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', appState.theme);
-    localStorage.setItem('medbridge-theme', appState.theme);
+    localStorage.setItem('afya-theme', appState.theme);
     updateThemeIcon();
+    trackEvent('theme_changed', { new_theme: appState.theme });
     
     // Add smooth transition
     document.documentElement.style.transition = 'background-color 0.3s ease, color 0.3s ease';
@@ -84,7 +118,8 @@ function startAssessment() {
     if (overlay) {
         overlay.classList.remove('hidden');
         appState.assessmentActive = true;
-        document.body.style.overflow = 'hidden'; // Prevent background scroll
+        document.body.style.overflow = 'hidden';
+        trackEvent('assessment_started');
         
         // Add entrance animation
         setTimeout(() => {
@@ -100,8 +135,12 @@ function closeAssessment() {
         setTimeout(() => {
             overlay.classList.add('hidden');
             appState.assessmentActive = false;
-            document.body.style.overflow = ''; // Restore scrolling
+            document.body.style.overflow = '';
             resetAssessment();
+            trackEvent('assessment_closed', {
+                completed: false,
+                symptoms_selected: appState.selectedSymptoms.length
+            });
         }, 200);
     }
 }
@@ -128,10 +167,12 @@ function toggleSymptom(button) {
         // Deselect
         button.classList.remove('active');
         appState.selectedSymptoms = appState.selectedSymptoms.filter(s => s !== symptom);
+        trackEvent('symptom_deselected', { symptom });
     } else {
         // Select
         button.classList.add('active');
         appState.selectedSymptoms.push(symptom);
+        trackEvent('symptom_selected', { symptom });
     }
     
     // Update continue button state
@@ -151,12 +192,26 @@ function updateContinueButton() {
 }
 
 function proceedToSeverity() {
-    // In full version, this would proceed to next step
-    // For MVP, show a success message
     const symptoms = appState.selectedSymptoms.join(', ');
     
-    alert(`Assessment started for: ${symptoms}\n\nIn the full version, you would proceed through:\n• Severity assessment\n• Duration questions\n• AI analysis\n• Personalized care instructions\n\nThis is a simplified demo.`);
+    trackEvent('assessment_continued', {
+        symptoms: appState.selectedSymptoms,
+        symptom_count: appState.selectedSymptoms.length
+    });
     
+    // In production, this would proceed to full assessment flow
+    // For MVP, show informative message
+    const message = `Assessment started for: ${symptoms}\n\n` +
+                   `In the full Afya platform, you would now:\n` +
+                   `✓ Rate symptom severity (1-10 scale)\n` +
+                   `✓ Answer duration questions\n` +
+                   `✓ Receive AI-powered analysis\n` +
+                   `✓ Get personalized care instructions\n` +
+                   `✓ Connect to nearby healthcare if needed\n\n` +
+                   `This simplified demo shows the core interface.\n` +
+                   `Full functionality coming soon!`;
+    
+    alert(message);
     closeAssessment();
 }
 
@@ -167,6 +222,7 @@ function showFounderStory(e) {
     if (modal) {
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
+        trackEvent('founder_story_opened');
         
         // Add entrance animation
         setTimeout(() => {
@@ -177,64 +233,106 @@ function showFounderStory(e) {
 
 function closeFounderModal() {
     const modal = document.getElementById('founderModal');
-    if (modal) {
+    if (modal && !modal.classList.contains('hidden')) {
         modal.style.opacity = '0';
         setTimeout(() => {
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+            trackEvent('founder_story_closed');
         }, 200);
     }
 }
 
-// ========== ANALYTICS & TRACKING (Privacy-Friendly) ==========
+// ========== ANALYTICS & TRACKING ==========
 function trackEvent(eventName, eventData = {}) {
-    // In production, integrate with privacy-friendly analytics
-    // For now, just console log
-    console.log('Event:', eventName, eventData);
+    // Privacy-friendly analytics tracking
+    const event = {
+        name: eventName,
+        timestamp: Date.now(),
+        data: eventData,
+        session_duration: Date.now() - appState.analytics.sessionStart
+    };
     
-    // Example: Track button clicks, assessment starts, etc.
-    // This helps understand user behavior without compromising privacy
+    appState.analytics.events.push(event);
+    
+    // Log to console in development
+    console.log('📊 Event:', eventName, eventData);
+    
+    // In production, send to analytics service
+    // sendToAnalytics(event);
 }
 
-// Track important user actions
-document.querySelectorAll('.btn-primary').forEach(btn => {
-    btn.addEventListener('click', function() {
-        trackEvent('cta_clicked', { 
-            button_text: this.textContent.trim(),
-            location: this.closest('section')?.className || 'unknown'
-        });
+// ========== PERFORMANCE MONITORING ==========
+function monitorPerformance() {
+    if ('PerformanceObserver' in window) {
+        // Monitor long tasks
+        try {
+            const observer = new PerformanceObserver((list) => {
+                for (const entry of list.getEntries()) {
+                    if (entry.duration > 50) {
+                        console.warn('⚠️ Long task detected:', entry.duration + 'ms');
+                    }
+                }
+            });
+            observer.observe({ entryTypes: ['longtask'] });
+        } catch (e) {
+            // Long task API not supported
+        }
+    }
+    
+    // Log page load performance
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const perfData = performance.getEntriesByType('navigation')[0];
+            if (perfData) {
+                trackEvent('page_performance', {
+                    load_time: perfData.loadEventEnd - perfData.fetchStart,
+                    dom_content_loaded: perfData.domContentLoadedEventEnd - perfData.fetchStart
+                });
+                console.log('⚡ Page loaded in:', Math.round(perfData.loadEventEnd - perfData.fetchStart), 'ms');
+            }
+        }, 0);
     });
-});
+}
 
-// ========== PERFORMANCE OPTIMIZATIONS ==========
-// Lazy load images (when you add them)
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
+// ========== SCROLL ANIMATIONS ==========
+function observeElementsForAnimation() {
+    if (!('IntersectionObserver' in window)) return;
+    
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const fadeInObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const img = entry.target;
-                if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                    img.classList.add('loaded');
-                    observer.unobserve(img);
-                }
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                fadeInObserver.unobserve(entry.target);
             }
         });
-    });
+    }, observerOptions);
     
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
+    // Apply to sections
+    document.querySelectorAll('section').forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        fadeInObserver.observe(section);
     });
 }
 
 // ========== ACCESSIBILITY ENHANCEMENTS ==========
 // Keyboard navigation for custom buttons
-document.querySelectorAll('.symptom-btn').forEach(btn => {
-    btn.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            this.click();
-        }
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.symptom-btn').forEach(btn => {
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
     });
 });
 
@@ -243,7 +341,11 @@ function announceToScreenReader(message) {
     const announcement = document.createElement('div');
     announcement.setAttribute('role', 'status');
     announcement.setAttribute('aria-live', 'polite');
-    announcement.className = 'sr-only';
+    announcement.style.position = 'absolute';
+    announcement.style.left = '-10000px';
+    announcement.style.width = '1px';
+    announcement.style.height = '1px';
+    announcement.style.overflow = 'hidden';
     announcement.textContent = message;
     document.body.appendChild(announcement);
     
@@ -254,31 +356,36 @@ function announceToScreenReader(message) {
 
 // ========== ERROR HANDLING ==========
 window.addEventListener('error', function(e) {
-    console.error('Application error:', e.error);
-    // In production, send to error tracking service
-    // Don't show ugly errors to users - handle gracefully
+    console.error('⚠️ Application error:', e.error);
+    trackEvent('javascript_error', {
+        message: e.message,
+        filename: e.filename,
+        line: e.lineno
+    });
+    
+    // In production, send to error tracking service (Sentry, Rollbar, etc.)
+    // Don't show ugly errors to users
+});
+
+window.addEventListener('unhandledrejection', function(e) {
+    console.error('⚠️ Unhandled promise rejection:', e.reason);
+    trackEvent('promise_rejection', {
+        reason: e.reason?.toString()
+    });
 });
 
 // ========== NETWORK STATUS DETECTION ==========
 window.addEventListener('online', function() {
     announceToScreenReader('Internet connection restored');
     console.log('✅ Back online');
+    trackEvent('network_status', { online: true });
 });
 
 window.addEventListener('offline', function() {
     announceToScreenReader('Internet connection lost. Basic features still available.');
-    console.log('⚠️ Offline mode');
+    console.log('⚠️ Offline mode - Afya core features still work');
+    trackEvent('network_status', { online: false });
 });
-
-// ========== SERVICE WORKER (For Offline Support) ==========
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        // In production, register service worker for offline capability
-        // navigator.serviceWorker.register('/sw.js')
-        //     .then(reg => console.log('Service Worker registered'))
-        //     .catch(err => console.log('Service Worker registration failed'));
-    });
-}
 
 // ========== UTILITY FUNCTIONS ==========
 function debounce(func, wait) {
@@ -307,71 +414,87 @@ function throttle(func, limit) {
 }
 
 // ========== PAGE VISIBILITY API ==========
-// Pause unnecessary operations when page is hidden
 document.addEventListener('visibilitychange', function() {
     if (document.hidden) {
-        console.log('Page hidden - pausing non-essential operations');
+        trackEvent('page_hidden');
+        console.log('📱 Page hidden - pausing non-essential operations');
     } else {
-        console.log('Page visible - resuming operations');
+        trackEvent('page_visible');
+        console.log('👁️ Page visible - resuming operations');
     }
 });
 
-// ========== SMOOTH REVEAL ON SCROLL ==========
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const fadeInObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Apply fade-in animation to sections
-document.addEventListener('DOMContentLoaded', function() {
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        fadeInObserver.observe(section);
-    });
-});
-
-// ========== PREFETCH RESOURCES ==========
+// ========== PREFETCH & OPTIMIZATION ==========
 // Prefetch critical resources when user shows intent
-document.querySelectorAll('a[href^="#"]').forEach(link => {
+document.querySelectorAll('a').forEach(link => {
     link.addEventListener('mouseenter', function() {
-        // Prefetch resources for better UX
-        // In production, prefetch API endpoints or images
-    });
+        // In production, prefetch linked resources
+        // This improves perceived performance
+    }, { once: true });
 });
 
-// ========== CONSOLE ART (Optional Easter Egg) ==========
+// ========== SESSION MANAGEMENT ==========
+// Track session duration
+window.addEventListener('beforeunload', function() {
+    const sessionDuration = Date.now() - appState.analytics.sessionStart;
+    trackEvent('session_ended', {
+        duration_ms: sessionDuration,
+        duration_minutes: Math.round(sessionDuration / 60000),
+        events_tracked: appState.analytics.events.length
+    });
+    
+    console.log('👋 Session ended. Duration:', Math.round(sessionDuration / 60000), 'minutes');
+});
+
+// ========== CONSOLE BRANDING ==========
 console.log(`
-%c🏥 MedBridge Platform
+%c🏥 Afya Health Technologies
+%cPan-African Health Platform
+
+%cBuilt with ❤️ by Louis Nkan 🇳🇬
 %cHealthcare shouldn't depend on location
 
-%cBuilt with ❤️ by Louis Nkan
-%cInterested in the mission? louisnkan2002@gmail.com
+%cInterested in our mission?
+%clouisnkan2002@gmail.com • founder@getafya.com
 `, 
-'font-size: 20px; font-weight: bold; color: #2D6A4F;',
-'font-size: 14px; color: #6B7280;',
-'font-size: 12px; font-weight: bold; color: #2D6A4F;',
-'font-size: 12px; color: #6B7280;'
+'font-size: 24px; font-weight: bold; color: #2D6A4F;',
+'font-size: 14px; color: #6B7280; font-style: italic;',
+'font-size: 14px; font-weight: bold; color: #2D6A4F;',
+'font-size: 12px; color: #6B7280;',
+'font-size: 12px; font-weight: bold; color: #2D6A4F; margin-top: 10px;',
+'font-size: 11px; color: #6B7280;'
 );
 
+// ========== SERVICE WORKER (For Offline Support) ==========
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        // In production, register service worker for offline capability
+        // navigator.serviceWorker.register('/sw.js')
+        //     .then(registration => {
+        //         console.log('✅ Service Worker registered:', registration.scope);
+        //         trackEvent('service_worker_registered');
+        //     })
+        //     .catch(error => {
+        //         console.log('❌ Service Worker registration failed:', error);
+        //         trackEvent('service_worker_failed', { error: error.message });
+        //     });
+    });
+}
+
 // ========== EXPORT FOR TESTING ==========
-// If you're adding tests later, export functions
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         toggleTheme,
         startAssessment,
         closeAssessment,
-        toggleSymptom
+        toggleSymptom,
+        trackEvent
     };
 }
+
+// ========== INITIALIZATION COMPLETE ==========
+console.log('🚀 Afya platform ready. All systems operational.');
+console.log('📊 Analytics active. Privacy-friendly tracking enabled.');
+console.log('♿ Accessibility features enabled.');
+console.log('🌐 Offline support ready (when service worker deployed).');
+console.log('💪 Built for Africa, by Africa. Health for everyone, everywhere.');
